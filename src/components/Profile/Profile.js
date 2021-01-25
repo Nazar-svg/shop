@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import PetsIcon from '@material-ui/icons/Pets';
+import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -138,6 +140,49 @@ export default function AutoGrid() {
                 <Button color="primary">Редагувати</Button>
               </div>
             </Grid>
+          </Grid>
+        </div>
+        <div className={classes.box}>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <p className={classes.titleBox}>
+                <EnhancedEncryptionIcon className={classes.icon} />
+                Логін
+              </p>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <span className={classes.span}>Логін(електронна пошта)</span>
+              <p className={classes.p}>solodka_sveta@i.ua</p>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <Button color="primary" style={{ marginLeft: '50px' }}>
+                Редагувати
+              </Button>
+            </Grid>
+          </Grid>
+        </div>
+        <div className={classes.box}>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <p className={classes.titleBox}>
+                <PetsIcon className={classes.icon} />
+                Домашні тварини
+              </p>
+            </Grid>
+            <Grid item xs>
+              <div className={classes.Btn}>
+                <Button color="primary">Редагувати</Button>
+              </div>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs></Grid>
+            <Grid item xs></Grid>
+            <Grid item xs></Grid>
           </Grid>
         </div>
       </div>
