@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Checkbox from '../UI/CheckBox/CheckBox';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
@@ -180,9 +181,34 @@ export default function AutoGrid() {
             </Grid>
           </Grid>
           <Grid container spacing={3}>
-            <Grid item xs></Grid>
-            <Grid item xs></Grid>
-            <Grid item xs></Grid>
+            <Grid item xs>
+              <span>
+                <Checkbox />
+                собака
+              </span>
+            </Grid>
+            <Grid item xs>
+              <Checkbox />
+              <span>кіт</span>
+            </Grid>
+            <Grid item xs>
+              <Checkbox />
+              <span>рибки</span>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <Checkbox />
+              <span>пташка</span>
+            </Grid>
+            <Grid item xs>
+              <Checkbox />
+              <span>гризун</span>
+            </Grid>
+            <Grid item xs>
+              <Checkbox />
+              <span>земноводне</span>
+            </Grid>
           </Grid>
         </div>
       </div>
