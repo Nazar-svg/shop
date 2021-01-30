@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Checkbox from '../UI/CheckBox/CheckBox';
+import Checkbox from '../../UI/CheckBox/CheckBox';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
@@ -74,11 +74,7 @@ export default function AutoGrid() {
               </p>
             </Grid>
             <Grid item xs>
-              <div className={classes.Btn}>
-                <NavLink to={'/personal'}>
-                  <Button color="primary">Редагувати</Button>
-                </NavLink>
-              </div>
+              <div className={classes.Btn}></div>
             </Grid>
           </Grid>
           <Grid container spacing={3}>

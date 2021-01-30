@@ -6,6 +6,7 @@ import ProductList from './components/ProductList/ProductList';
 import Ordering from './containers/Ordering/Ordering';
 import Nawbar from './components/Nawbar/Nawbar';
 import Profile from './components/Profile/Profile';
+import Personal from './components/Profile/Personal/Personal';
 import './App.css';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/productList" component={ProductList} />
         <Route path="/ordering" component={Ordering} />
         <Route path="/profile" component={Profile} />
+        <Route path="/personal" component={Personal} />
         <Route path="/" component={Auth} />
       </Switch>
     </Layout>
