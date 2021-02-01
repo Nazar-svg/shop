@@ -8,6 +8,7 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import PetsIcon from '@material-ui/icons/Pets';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
+import Input from '../../UI/Input/Input';
 import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -73,38 +74,20 @@ export default function AutoGrid() {
                 Особиті дані
               </p>
             </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}></div>
-            </Grid>
           </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Прізвище</span>
-              <p className={classes.p}>Kolos</p>
+          <form noValidate autoComplete="off">
+            <Grid container>
+              <Grid item xs>
+                <Input label="Прізвище" />
+              </Grid>
+              <Grid item xs>
+                <Input label="ім'я" />
+              </Grid>
+              <Grid item xs>
+                <Input label="Побатькові" />
+              </Grid>
             </Grid>
-            <Grid item xs>
-              <span className={classes.span}>Імя</span>
-              <p className={classes.p}>Swetlana</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>По баткові</span>
-              <p className={classes.p}>Не вказано</p>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Дата народження</span>
-              <p className={classes.p}>Не вказана</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>Стать</span>
-              <p className={classes.p}>Не вказана</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>Мова</span>
-              <p className={classes.p}>Українська</p>
-            </Grid>
-          </Grid>
+          </form>
         </div>
         <div className={classes.box}>
           <Grid container spacing={3}>
