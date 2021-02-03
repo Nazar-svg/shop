@@ -6,7 +6,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '25ch',
+      width: '37ch',
+      marginBottom: '3ch',
     },
   },
 }));
@@ -15,6 +16,11 @@ export default function BasicTextFields(props) {
   const classes = useStyles();
 
   return (
-    <TextField id="outlined-basic" label={props.label} variant="outlined" />
+    <TextField
+      id="outlined-basic"
+      className={classes.root}
+      label={props.label}
+      variant="outlined"
+    />
   );
 }

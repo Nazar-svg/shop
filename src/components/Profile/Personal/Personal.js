@@ -57,6 +57,23 @@ const useStyles = makeStyles((theme) => ({
     left: '-20px',
     right: 0,
   },
+  boxes: {
+    width: '1091px',
+    height: '300px',
+    border: '2px solid #c1c1c1',
+    padding: '20px',
+    paddingBottom: '50px',
+  },
+  ul: {
+    listStyle: 'none',
+    padding: 0,
+    margin: 0,
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  li: {
+    marginRight: '15px',
+  },
 }));
 
 export default function AutoGrid() {
@@ -66,29 +83,45 @@ export default function AutoGrid() {
     <>
       <h1 className={classes.title}>Особиті дані</h1>
       <div className={classes.root}>
-        <div className={classes.box}>
+        <div className={classes.boxes}>
           <Grid container spacing={3}>
             <Grid item xs>
-              <p className={classes.titleBox}>
+              <h1 className={classes.titleBox}>
                 <PermIdentityIcon className={classes.icon} />
                 Особиті дані
-              </p>
+              </h1>
             </Grid>
           </Grid>
           <form noValidate autoComplete="off">
             <Grid container>
-              <Grid item xs>
-                <Input label="Прізвище" />
-              </Grid>
-              <Grid item xs>
-                <Input label="ім'я" />
-              </Grid>
-              <Grid item xs>
-                <Input label="Побатькові" />
-              </Grid>
+              <ul className={classes.ul}>
+                <li className={classes.li}>
+                  <Input label="Прізвище" />
+                </li>
+                <li className={classes.li}>
+                  <Input label="ім'я" />
+                </li>
+                <li className={classes.li}>
+                  <Input label="Побатькові" />
+                </li>
+                <li className={classes.li}>
+                  <Input label="Дата народження" />
+                </li>
+                <li className={classes.li}>
+                  <Input label="Дата народження" />
+                </li>
+                <li className={classes.li}>
+                  <Input label="Дата народження" />
+                </li>
+              </ul>
+              <Button color="primary" disabled style={{ marginRight: '20px' }}>
+                Зберегти
+              </Button>
+              <Button color="primary">Скасувати</Button>
             </Grid>
           </form>
         </div>
+
         <div className={classes.box}>
           <Grid container spacing={3}>
             <Grid item xs>
