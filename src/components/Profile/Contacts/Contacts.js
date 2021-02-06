@@ -8,9 +8,8 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import PetsIcon from '@material-ui/icons/Pets';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
-import Input from '../../UI/Input/Input';
-import Select from '../../UI/Select/Select';
 import { NavLink } from 'react-router-dom';
+import Input from '../../UI/Input/Input';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '50px',
   },
   ul: {
+    marginLeft: '360px',
     listStyle: 'none',
     padding: 0,
     margin: 0,
@@ -74,6 +74,11 @@ const useStyles = makeStyles((theme) => ({
   },
   li: {
     marginRight: '15px',
+  },
+  btnGrup: {
+    marginLeft: '360px',
+    marginTop: '60px',
+    display: 'block',
   },
 }));
 
@@ -84,12 +89,58 @@ export default function AutoGrid() {
     <>
       <h1 className={classes.title}>Особиті дані</h1>
       <div className={classes.root}>
+        <div className={classes.box}>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <p className={classes.titleBox}>
+                <PermIdentityIcon className={classes.icon} />
+                Особиті дані
+              </p>
+            </Grid>
+            <Grid item xs>
+              <div className={classes.Btn}>
+                <NavLink to={'/personal'}>
+                  <Button color="primary">Редагувати</Button>
+                </NavLink>
+              </div>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <span className={classes.span}>Прізвище</span>
+              <p className={classes.p}>Kolos</p>
+            </Grid>
+            <Grid item xs>
+              <span className={classes.span}>Імя</span>
+              <p className={classes.p}>Swetlana</p>
+            </Grid>
+            <Grid item xs>
+              <span className={classes.span}>По баткові</span>
+              <p className={classes.p}>Не вказано</p>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <span className={classes.span}>Дата народження</span>
+              <p className={classes.p}>Не вказана</p>
+            </Grid>
+            <Grid item xs>
+              <span className={classes.span}>Стать</span>
+              <p className={classes.p}>Не вказана</p>
+            </Grid>
+            <Grid item xs>
+              <span className={classes.span}>Мова</span>
+              <p className={classes.p}>Українська</p>
+            </Grid>
+          </Grid>
+        </div>
+
         <div className={classes.boxes}>
           <Grid container spacing={3}>
             <Grid item xs>
               <h1 className={classes.titleBox}>
-                <PermIdentityIcon className={classes.icon} />
-                Особиті дані
+                <MailOutlineIcon className={classes.icon} />
+                Контакти
               </h1>
             </Grid>
           </Grid>
@@ -97,60 +148,25 @@ export default function AutoGrid() {
             <Grid container>
               <ul className={classes.ul}>
                 <li className={classes.li}>
-                  <Input label="Прізвище" />
-                </li>
-                <li className={classes.li}>
-                  <Input label="ім'я" />
-                </li>
-                <li className={classes.li}>
-                  <Input label="Побатькові" />
-                </li>
-                <li className={classes.li}>
-                  <Input label="Дата народження" />
-                </li>
-                <li className={classes.li}>
-                  <Select label="стать" option1="чоловіча" option2="жіноча" />
-                </li>
-                <li className={classes.li}>
-                  <Select
-                    label="Мова спілкування"
-                    value="Оберіть мову"
-                    option1="Укр"
-                    option2="Анг"
-                  />
+                  <Input label="Ел.адрес" />
                 </li>
               </ul>
-              <Button color="primary" disabled style={{ marginRight: '20px' }}>
-                Зберегти
-              </Button>
-              <NavLink to={'/profile'}>
-                <Button color="primary">Скасувати</Button>
-              </NavLink>
+              <div className={classes.btnGrup}>
+                <Button
+                  color="primary"
+                  disabled
+                  style={{ marginRight: '20px' }}
+                >
+                  Зберегти
+                </Button>
+                <NavLink to={'/profile'}>
+                  <Button color="primary">Скасувати</Button>
+                </NavLink>
+              </div>
             </Grid>
           </form>
         </div>
 
-        <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <MailOutlineIcon className={classes.icon} />
-                Контакти
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <Button color="primary">Редагувати</Button>
-              </div>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Електронна пошта</span>
-              <p className={classes.p}>solodka_sveta@i.ua</p>
-            </Grid>
-          </Grid>
-        </div>
         <div className={classes.box}>
           <Grid container spacing={3}>
             <Grid item xs>

@@ -120,7 +120,9 @@ export default function AutoGrid() {
             </Grid>
             <Grid item xs>
               <div className={classes.Btn}>
-                <Button color="primary">Редагувати</Button>
+                <NavLink to="/contacts">
+                  <Button color="primary">Редагувати</Button>
+                </NavLink>
               </div>
             </Grid>
           </Grid>
