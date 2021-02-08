@@ -2,13 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Checkbox from '../../UI/CheckBox/CheckBox';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import PetsIcon from '@material-ui/icons/Pets';
-import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
-import { NavLink } from 'react-router-dom';
 import Input from '../../UI/Input/Input';
 
 const useStyles = makeStyles((theme) => ({
@@ -82,174 +76,50 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AutoGrid() {
+export default function Contacts(props) {
   const classes = useStyles();
+  const [state, setState] = React.useState({
+    email: '',
+  });
+  const handleChange = (event) => {
+    const email = event.target.email;
+    setState({
+      email,
+    });
+  };
 
   return (
     <>
       <h1 className={classes.title}>Особиті дані</h1>
-      <div className={classes.root}>
-        <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <PermIdentityIcon className={classes.icon} />
-                Особиті дані
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <NavLink to={'/personal'}>
-                  <Button color="primary">Редагувати</Button>
-                </NavLink>
-              </div>
-            </Grid>
+      <div className={classes.boxes}>
+        <Grid container spacing={3}>
+          <Grid item xs>
+            <h1 className={classes.titleBox}>
+              <MailOutlineIcon className={classes.icon} />
+              Контакти
+            </h1>
           </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Прізвище</span>
-              <p className={classes.p}>Kolos</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>Імя</span>
-              <p className={classes.p}>Swetlana</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>По баткові</span>
-              <p className={classes.p}>Не вказано</p>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Дата народження</span>
-              <p className={classes.p}>Не вказана</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>Стать</span>
-              <p className={classes.p}>Не вказана</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>Мова</span>
-              <p className={classes.p}>Українська</p>
-            </Grid>
-          </Grid>
-        </div>
-
-        <div className={classes.boxes}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <h1 className={classes.titleBox}>
-                <MailOutlineIcon className={classes.icon} />
-                Контакти
-              </h1>
-            </Grid>
-          </Grid>
-          <form noValidate autoComplete="off">
-            <Grid container>
-              <ul className={classes.ul}>
-                <li className={classes.li}>
-                  <Input label="Ел.адрес" />
-                </li>
-              </ul>
-              <div className={classes.btnGrup}>
-                <Button
-                  color="primary"
-                  disabled
-                  style={{ marginRight: '20px' }}
-                >
-                  Зберегти
-                </Button>
-                <NavLink to={'/profile'}>
-                  <Button color="primary">Скасувати</Button>
-                </NavLink>
-              </div>
-            </Grid>
-          </form>
-        </div>
-
-        <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <LocalShippingIcon className={classes.icon} />
-                Адреса Доставки
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <Button color="primary">Редагувати</Button>
-              </div>
-            </Grid>
-          </Grid>
-        </div>
-        <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <EnhancedEncryptionIcon className={classes.icon} />
-                Логін
-              </p>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Логін(електронна пошта)</span>
-              <p className={classes.p}>solodka_sveta@i.ua</p>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <Button color="primary" style={{ marginLeft: '50px' }}>
-                Редагувати
+        </Grid>
+        <form noValidate autoComplete="off">
+          <Grid container>
+            <ul className={classes.ul}>
+              <li className={classes.li}>
+                <Input
+                  label="Ел.адрес"
+                  onChange={(event) => handleChange(event)}
+                />
+              </li>
+            </ul>
+            <div className={classes.btnGrup}>
+              <Button color="primary" style={{ marginRight: '20px' }}>
+                Зберегти
               </Button>
-            </Grid>
+              <Button color="primary" onClick={props.showContacts}>
+                Скасувати
+              </Button>
+            </div>
           </Grid>
-        </div>
-        <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <PetsIcon className={classes.icon} />
-                Домашні тварини
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <Button color="primary">Редагувати</Button>
-              </div>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span>
-                <Checkbox />
-                собака
-              </span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>кіт</span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>рибки</span>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <Checkbox />
-              <span>пташка</span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>гризун</span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>земноводне</span>
-            </Grid>
-          </Grid>
-        </div>
+        </form>
       </div>
     </>
   );

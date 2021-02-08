@@ -8,6 +8,7 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import PetsIcon from '@material-ui/icons/Pets';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
+import Contacts from './Contacts/Contacts';
 import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +61,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AutoGrid() {
   const classes = useStyles();
+  const [profile, setProfile] = React.useState({
+    name: 'Nazar',
+    lastName: 'Kolos',
+    pb: 'Не вказано',
+    dateBorn: 'Не вказано',
+    showContacts: true,
+  });
 
+  const showContacts = () => {
+    setProfile({
+      showContacts: !profile.showContacts,
+    });
+  };
   return (
     <>
       <h1 className={classes.title}>Особиті дані</h1>
@@ -84,21 +97,21 @@ export default function AutoGrid() {
           <Grid container spacing={3}>
             <Grid item xs>
               <span className={classes.span}>Прізвище</span>
-              <p className={classes.p}>Kolos</p>
+              <p className={classes.p}>{profile.lastName}</p>
             </Grid>
             <Grid item xs>
               <span className={classes.span}>Імя</span>
-              <p className={classes.p}>Swetlana</p>
+              <p className={classes.p}>{profile.name}</p>
             </Grid>
             <Grid item xs>
               <span className={classes.span}>По баткові</span>
-              <p className={classes.p}>Не вказано</p>
+              <p className={classes.p}>{profile.pb}</p>
             </Grid>
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs>
               <span className={classes.span}>Дата народження</span>
-              <p className={classes.p}>Не вказана</p>
+              <p className={classes.p}>{profile.dateBorn}</p>
             </Grid>
             <Grid item xs>
               <span className={classes.span}>Стать</span>
@@ -110,28 +123,35 @@ export default function AutoGrid() {
             </Grid>
           </Grid>
         </div>
+
         <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <MailOutlineIcon className={classes.icon} />
-                Контакти
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <NavLink to="/contacts">
-                  <Button color="primary">Редагувати</Button>
-                </NavLink>
-              </div>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Електронна пошта</span>
-              <p className={classes.p}>solodka_sveta@i.ua</p>
-            </Grid>
-          </Grid>
+          {profile.showContacts ? (
+            <>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <p className={classes.titleBox}>
+                    <MailOutlineIcon className={classes.icon} />
+                    Контакти
+                  </p>
+                </Grid>
+                <Grid item xs>
+                  <div className={classes.Btn}>
+                    <Button color="primary" onClick={showContacts}>
+                      Редагувати
+                    </Button>
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <span className={classes.span}>Електронна пошта</span>
+                  <p className={classes.p}>solodka_sveta@i.ua</p>
+                </Grid>
+              </Grid>
+            </>
+          ) : (
+            <Contacts showContacts={showContacts} />
+          )}
         </div>
         <div className={classes.box}>
           <Grid container spacing={3}>
