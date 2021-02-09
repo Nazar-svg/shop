@@ -19,6 +19,7 @@ export default function BasicTextFields(props) {
     <TextField
       id="outlined-basic"
       onChange={props.onChange}
+      value={props.value}
       className={classes.root}
       label={props.label}
       variant="outlined"

@@ -2,12 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Checkbox from '../../UI/CheckBox/CheckBox';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import PetsIcon from '@material-ui/icons/Pets';
-import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import Input from '../../UI/Input/Input';
 import Select from '../../UI/Select/Select';
 import { NavLink } from 'react-router-dom';
@@ -77,163 +72,57 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AutoGrid() {
+export default function Personal(props) {
   const classes = useStyles();
 
   return (
     <>
-      <h1 className={classes.title}>Особиті дані</h1>
-      <div className={classes.root}>
-        <div className={classes.boxes}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <h1 className={classes.titleBox}>
-                <PermIdentityIcon className={classes.icon} />
-                Особиті дані
-              </h1>
-            </Grid>
+      <div className={classes.boxes}>
+        <Grid container spacing={3}>
+          <Grid item xs>
+            <h1 className={classes.titleBox}>
+              <PermIdentityIcon className={classes.icon} />
+              Особиті дані
+            </h1>
           </Grid>
-          <form noValidate autoComplete="off">
-            <Grid container>
-              <ul className={classes.ul}>
-                <li className={classes.li}>
-                  <Input label="Прізвище" />
-                </li>
-                <li className={classes.li}>
-                  <Input label="ім'я" />
-                </li>
-                <li className={classes.li}>
-                  <Input label="Побатькові" />
-                </li>
-                <li className={classes.li}>
-                  <Input label="Дата народження" />
-                </li>
-                <li className={classes.li}>
-                  <Select label="стать" option1="чоловіча" option2="жіноча" />
-                </li>
-                <li className={classes.li}>
-                  <Select
-                    label="Мова спілкування"
-                    value="Оберіть мову"
-                    option1="Укр"
-                    option2="Анг"
-                  />
-                </li>
-              </ul>
-              <Button color="primary" disabled style={{ marginRight: '20px' }}>
-                Зберегти
+        </Grid>
+        <form noValidate autoComplete="off">
+          <Grid container>
+            <ul className={classes.ul}>
+              <li className={classes.li}>
+                <Input label="Прізвище" />
+              </li>
+              <li className={classes.li}>
+                <Input label="ім'я" />
+              </li>
+              <li className={classes.li}>
+                <Input label="Побатькові" />
+              </li>
+              <li className={classes.li}>
+                <Input label="Дата народження" />
+              </li>
+              <li className={classes.li}>
+                <Select label="стать" option1="чоловіча" option2="жіноча" />
+              </li>
+              <li className={classes.li}>
+                <Select
+                  label="Мова спілкування"
+                  value="Оберіть мову"
+                  option1="Укр"
+                  option2="Анг"
+                />
+              </li>
+            </ul>
+            <Button color="primary" disabled style={{ marginRight: '20px' }}>
+              Зберегти
+            </Button>
+            <NavLink to={'/profile'}>
+              <Button color="primary" onClick={() => props.showPersonal(true)}>
+                Скасувати
               </Button>
-              <NavLink to={'/profile'}>
-                <Button color="primary">Скасувати</Button>
-              </NavLink>
-            </Grid>
-          </form>
-        </div>
-
-        <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <MailOutlineIcon className={classes.icon} />
-                Контакти
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <Button color="primary">Редагувати</Button>
-              </div>
-            </Grid>
+            </NavLink>
           </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Електронна пошта</span>
-              <p className={classes.p}>solodka_sveta@i.ua</p>
-            </Grid>
-          </Grid>
-        </div>
-        <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <LocalShippingIcon className={classes.icon} />
-                Адреса Доставки
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <Button color="primary">Редагувати</Button>
-              </div>
-            </Grid>
-          </Grid>
-        </div>
-        <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <EnhancedEncryptionIcon className={classes.icon} />
-                Логін
-              </p>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Логін(електронна пошта)</span>
-              <p className={classes.p}>solodka_sveta@i.ua</p>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <Button color="primary" style={{ marginLeft: '50px' }}>
-                Редагувати
-              </Button>
-            </Grid>
-          </Grid>
-        </div>
-        <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <PetsIcon className={classes.icon} />
-                Домашні тварини
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <Button color="primary">Редагувати</Button>
-              </div>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span>
-                <Checkbox />
-                собака
-              </span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>кіт</span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>рибки</span>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <Checkbox />
-              <span>пташка</span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>гризун</span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>земноводне</span>
-            </Grid>
-          </Grid>
-        </div>
+        </form>
       </div>
     </>
   );

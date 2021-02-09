@@ -79,13 +79,18 @@ const useStyles = makeStyles((theme) => ({
 export default function Contacts(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    email: '',
+    email: props.email,
   });
   const handleChange = (event) => {
-    const email = event.target.email;
+    // console.log('Change', event.target.value);
     setState({
-      email,
+      email: event.target.value,
     });
+  };
+  const onChangeEmail = () => {
+    props.onChangeProfile(state.email, 'email');
+    props.showContacts(true);
+    // console.log('state', state);
   };
 
   return (
@@ -106,15 +111,20 @@ export default function Contacts(props) {
               <li className={classes.li}>
                 <Input
                   label="Ел.адрес"
+                  value={state.email}
                   onChange={(event) => handleChange(event)}
                 />
               </li>
             </ul>
             <div className={classes.btnGrup}>
-              <Button color="primary" style={{ marginRight: '20px' }}>
+              <Button
+                color="primary"
+                onClick={() => onChangeEmail()}
+                style={{ marginRight: '20px' }}
+              >
                 Зберегти
               </Button>
-              <Button color="primary" onClick={props.showContacts}>
+              <Button color="primary" onClick={() => props.showContacts(true)}>
                 Скасувати
               </Button>
             </div>

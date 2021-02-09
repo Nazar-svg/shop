@@ -9,7 +9,7 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import PetsIcon from '@material-ui/icons/Pets';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import Contacts from './Contacts/Contacts';
-import { NavLink } from 'react-router-dom';
+import Personal from './Personal/Personal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,61 +67,86 @@ export default function AutoGrid() {
     pb: 'Не вказано',
     dateBorn: 'Не вказано',
     showContacts: true,
+    showPersonal: true,
+    email: 'Nazar@sobaka',
   });
-
-  const showContacts = () => {
+  const showPersonal = (value) => {
     setProfile({
-      showContacts: !profile.showContacts,
+      ...profile,
+      showPersonal: value,
     });
   };
+  const showContacts = (value) => {
+    // console.log('v', value);
+    setProfile({
+      ...profile,
+      showContacts: value,
+    });
+  };
+
+  const onChangeProfile = (value, property) => {
+    setProfile({
+      ...profile,
+      [property]: value,
+      showContacts: false,
+    });
+    console.log('value', profile);
+  };
+
   return (
     <>
       <h1 className={classes.title}>Особиті дані</h1>
       <div className={classes.root}>
         <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <PermIdentityIcon className={classes.icon} />
-                Особиті дані
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <NavLink to={'/personal'}>
-                  <Button color="primary">Редагувати</Button>
-                </NavLink>
-              </div>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Прізвище</span>
-              <p className={classes.p}>{profile.lastName}</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>Імя</span>
-              <p className={classes.p}>{profile.name}</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>По баткові</span>
-              <p className={classes.p}>{profile.pb}</p>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Дата народження</span>
-              <p className={classes.p}>{profile.dateBorn}</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>Стать</span>
-              <p className={classes.p}>Не вказана</p>
-            </Grid>
-            <Grid item xs>
-              <span className={classes.span}>Мова</span>
-              <p className={classes.p}>Українська</p>
-            </Grid>
-          </Grid>
+          {profile.showPersonal ? (
+            <>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <p className={classes.titleBox}>
+                    <PermIdentityIcon className={classes.icon} />
+                    Особиті дані
+                  </p>
+                </Grid>
+                <Grid item xs>
+                  <div className={classes.Btn}>
+                    <Button color="primary" onClick={() => showPersonal(false)}>
+                      Редагувати
+                    </Button>
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <span className={classes.span}>Прізвище</span>
+                  <p className={classes.p}>{profile.lastName}</p>
+                </Grid>
+                <Grid item xs>
+                  <span className={classes.span}>Імя</span>
+                  <p className={classes.p}>{profile.name}</p>
+                </Grid>
+                <Grid item xs>
+                  <span className={classes.span}>По баткові</span>
+                  <p className={classes.p}>{profile.pb}</p>
+                </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <span className={classes.span}>Дата народження</span>
+                  <p className={classes.p}>{profile.dateBorn}</p>
+                </Grid>
+                <Grid item xs>
+                  <span className={classes.span}>Стать</span>
+                  <p className={classes.p}>Не вказана</p>
+                </Grid>
+                <Grid item xs>
+                  <span className={classes.span}>Мова</span>
+                  <p className={classes.p}>Українська</p>
+                </Grid>
+              </Grid>
+            </>
+          ) : (
+            <Personal showPersonal={showPersonal} />
+          )}
         </div>
 
         <div className={classes.box}>
@@ -136,7 +161,7 @@ export default function AutoGrid() {
                 </Grid>
                 <Grid item xs>
                   <div className={classes.Btn}>
-                    <Button color="primary" onClick={showContacts}>
+                    <Button color="primary" onClick={() => showContacts(false)}>
                       Редагувати
                     </Button>
                   </div>
@@ -145,12 +170,16 @@ export default function AutoGrid() {
               <Grid container spacing={3}>
                 <Grid item xs>
                   <span className={classes.span}>Електронна пошта</span>
-                  <p className={classes.p}>solodka_sveta@i.ua</p>
+                  <p className={classes.p}>{profile.email}</p>
                 </Grid>
               </Grid>
             </>
           ) : (
-            <Contacts showContacts={showContacts} />
+            <Contacts
+              showContacts={showContacts}
+              onChangeProfile={onChangeProfile}
+              email={profile.email}
+            />
           )}
         </div>
         <div className={classes.box}>
