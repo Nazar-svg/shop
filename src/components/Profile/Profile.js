@@ -10,6 +10,7 @@ import PetsIcon from '@material-ui/icons/Pets';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import Contacts from './Contacts/Contacts';
 import Personal from './Personal/Personal';
+import ChangeEmail from './ChangeEmail/ChangeEmail';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,7 +69,8 @@ export default function AutoGrid() {
     dateBorn: 'Не вказано',
     showContacts: true,
     showPersonal: true,
-    email: 'Nazar@sobaka',
+    showEmail: true,
+    email: '',
   });
   const showPersonal = (value) => {
     setProfile({
@@ -77,17 +79,22 @@ export default function AutoGrid() {
     });
   };
   const showContacts = (value) => {
-    // console.log('v', value);
     setProfile({
       ...profile,
       showContacts: value,
+    });
+  };
+  const showEmail = (value) => {
+    setProfile({
+      ...profile,
+      showEmail: value,
     });
   };
 
   const onChangeProfile = (value, property) => {
     setProfile({
       ...profile,
-      [property]: value,
+      email: value,
       showContacts: false,
     });
     console.log('value', profile);
@@ -197,29 +204,41 @@ export default function AutoGrid() {
             </Grid>
           </Grid>
         </div>
+
         <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <EnhancedEncryptionIcon className={classes.icon} />
-                Логін
-              </p>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span className={classes.span}>Логін(електронна пошта)</span>
-              <p className={classes.p}>solodka_sveta@i.ua</p>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <Button color="primary" style={{ marginLeft: '50px' }}>
-                Редагувати
-              </Button>
-            </Grid>
-          </Grid>
+          {profile.showEmail ? (
+            <>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <p className={classes.titleBox}>
+                    <EnhancedEncryptionIcon className={classes.icon} />
+                    Логін
+                  </p>
+                </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <span className={classes.span}>Логін(електронна пошта)</span>
+                  <p className={classes.p}>solodka_sveta@i.ua</p>
+                </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <Button
+                    color="primary"
+                    style={{ marginLeft: '50px' }}
+                    onClick={() => showEmail(false)}
+                  >
+                    Редагувати
+                  </Button>
+                </Grid>
+              </Grid>
+            </>
+          ) : (
+            <ChangeEmail showEmail={showEmail} />
+          )}
         </div>
+
         <div className={classes.box}>
           <Grid container spacing={3}>
             <Grid item xs>
