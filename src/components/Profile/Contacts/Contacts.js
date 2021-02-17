@@ -82,13 +82,12 @@ export default function Contacts(props) {
     email: props.email,
   });
   const handleChange = (event) => {
-    // console.log('Change', event.target.value);
     setState({
       email: event.target.value,
     });
   };
   const onChangeEmail = () => {
-    props.onChangeProfile(state.email, 'email');
+    props.onChangeProfile(state.email);
     props.showContacts(true);
     // console.log('state', state);
   };

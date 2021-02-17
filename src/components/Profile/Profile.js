@@ -60,44 +60,47 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AutoGrid() {
+export default function AutoGrid(props) {
   const classes = useStyles();
   const [profile, setProfile] = React.useState({
     name: 'Nazar',
     lastName: 'Kolos',
     pb: 'Не вказано',
     dateBorn: 'Не вказано',
+    email: 'nazar',
+  });
+  const [show, setShow] = React.useState({
     showContacts: true,
     showPersonal: true,
     showEmail: true,
-    email: '',
   });
-  const showPersonal = (value) => {
+  const onChangeProfile = (value) => {
+    console.log(value);
+
     setProfile({
       ...profile,
+      email: value,
+    });
+    console.log('val', profile);
+  };
+  const showPersonal = (value) => {
+    setShow({
+      ...show,
       showPersonal: value,
     });
   };
   const showContacts = (value) => {
-    setProfile({
-      ...profile,
+    console.log('AA', value);
+    setShow({
+      ...show,
       showContacts: value,
     });
   };
   const showEmail = (value) => {
-    setProfile({
-      ...profile,
+    setShow({
+      ...show,
       showEmail: value,
     });
-  };
-
-  const onChangeProfile = (value, property) => {
-    setProfile({
-      ...profile,
-      email: value,
-      showContacts: false,
-    });
-    console.log('value', profile);
   };
 
   return (
@@ -105,7 +108,7 @@ export default function AutoGrid() {
       <h1 className={classes.title}>Особиті дані</h1>
       <div className={classes.root}>
         <div className={classes.box}>
-          {profile.showPersonal ? (
+          {show.showPersonal ? (
             <>
               <Grid container spacing={3}>
                 <Grid item xs>
@@ -157,7 +160,7 @@ export default function AutoGrid() {
         </div>
 
         <div className={classes.box}>
-          {profile.showContacts ? (
+          {show.showContacts ? (
             <>
               <Grid container spacing={3}>
                 <Grid item xs>
@@ -206,7 +209,7 @@ export default function AutoGrid() {
         </div>
 
         <div className={classes.box}>
-          {profile.showEmail ? (
+          {show.showEmail ? (
             <>
               <Grid container spacing={3}>
                 <Grid item xs>
@@ -219,7 +222,7 @@ export default function AutoGrid() {
               <Grid container spacing={3}>
                 <Grid item xs>
                   <span className={classes.span}>Логін(електронна пошта)</span>
-                  <p className={classes.p}>solodka_sveta@i.ua</p>
+                  <p className={classes.p}>{profile.email}</p>
                 </Grid>
               </Grid>
               <Grid container spacing={3}>
@@ -235,7 +238,11 @@ export default function AutoGrid() {
               </Grid>
             </>
           ) : (
-            <ChangeEmail showEmail={showEmail} />
+            <ChangeEmail
+              showEmail={showEmail}
+              onChangeProfile={onChangeProfile}
+              email={profile.email}
+            />
           )}
         </div>
 
