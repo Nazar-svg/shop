@@ -89,7 +89,6 @@ export default function Contacts(props) {
   const onChangeEmail = () => {
     props.onChangeProfile(state.email);
     props.showContacts(true);
-    // console.log('state', state);
   };
 
   return (

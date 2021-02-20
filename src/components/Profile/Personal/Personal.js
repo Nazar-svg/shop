@@ -74,6 +74,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Personal(props) {
   const classes = useStyles();
+  const [personal, setPersonal] = React.useState({
+    name: props.profile.name,
+    lastName: props.profile.lastName,
+    pb: props.profile.pb,
+    dateBorn: props.profile.dateBorn,
+  });
+  const changePersonal = () => {
+    props.onChangePersonal(personal);
+    props.showPersonal(true);
+  };
 
   return (
     <>
@@ -90,16 +100,41 @@ export default function Personal(props) {
           <Grid container>
             <ul className={classes.ul}>
               <li className={classes.li}>
-                <Input label="Прізвище" />
+                <Input
+                  // label="Прізвище"
+                  id="lastName"
+                  onChange={(event) =>
+                    setPersonal({ ...personal, lastName: event.target.value })
+                  }
+                  value={personal.lastName}
+                />
               </li>
               <li className={classes.li}>
-                <Input label="ім'я" />
+                <Input
+                  // label="ім'я"
+                  id="name"
+                  value={personal.name}
+                  onChange={(event) =>
+                    setPersonal({ ...personal, name: event.target.value })
+                  }
+                />
               </li>
               <li className={classes.li}>
-                <Input label="Побатькові" />
+                <Input
+                  // label="Побатькові"
+                  value={personal.pb}
+                  onChange={(event) =>
+                    setPersonal({ ...personal, pb: event.target.value })
+                  }
+                />
               </li>
               <li className={classes.li}>
-                <Input label="Дата народження" />
+                <Input
+                  value={personal.dateBorn}
+                  onChange={(event) =>
+                    setPersonal({ ...personal, dateBorn: event.target.value })
+                  }
+                />
               </li>
               <li className={classes.li}>
                 <Select label="стать" option1="чоловіча" option2="жіноча" />
@@ -113,7 +148,11 @@ export default function Personal(props) {
                 />
               </li>
             </ul>
-            <Button color="primary" disabled style={{ marginRight: '20px' }}>
+            <Button
+              color="primary"
+              onClick={() => changePersonal()}
+              style={{ marginRight: '20px' }}
+            >
               Зберегти
             </Button>
             <NavLink to={'/profile'}>
