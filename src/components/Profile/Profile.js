@@ -81,6 +81,7 @@ export default function AutoGrid(props) {
     lastName: 'Kolos',
     pb: 'Sergiovuch',
     dateBorn: '31.05.1990p',
+    select: 'Оберіть стать',
   });
   const [show, setShow] = React.useState({
     showContacts: true,
@@ -89,14 +90,16 @@ export default function AutoGrid(props) {
   });
 
   const onChangePersonal = (item) => {
-    console.log('faill', profile);
+    console.log('A', profile);
     setProfile({
       ...profile,
       name: item.name,
       lastName: item.lastName,
       pb: item.pb,
       dateBorn: item.dateBorn,
+      select: item.selectSex,
     });
+    console.log('B', profile);
   };
   const onChangeProfile = (value) => {
     setEmail({
@@ -146,27 +149,7 @@ export default function AutoGrid(props) {
                   </div>
                 </Grid>
               </Grid>
-              <div>
-                <ul className={classes.ul}>
-                  <li className={classes.li}>
-                    <span className={classes.span}>Прізвище</span>
-                    <p className={classes.p}>{profile.lastName}</p>
-                  </li>
-                  <li className={classes.li}>
-                    <span className={classes.span}>Імя</span>
-                    <p className={classes.p}>{profile.name}</p>
-                  </li>
-                  <li className={classes.li}>
-                    <span className={classes.span}>По баткові</span>
-                    <p className={classes.p}>{profile.pb}</p>
-                  </li>
-                  <li className={classes.li}>
-                    <span className={classes.span}>Дата народження</span>
-                    <p className={classes.p}>{profile.dateBorn}</p>
-                  </li>
-                </ul>
-              </div>
-              {/* <Grid container spacing={3}>
+              <Grid container spacing={3}>
                 <Grid item xs>
                   <span className={classes.span}>Прізвище</span>
                   <p className={classes.p}>{profile.lastName}</p>
@@ -179,15 +162,19 @@ export default function AutoGrid(props) {
                   <span className={classes.span}>По баткові</span>
                   <p className={classes.p}>{profile.pb}</p>
                 </Grid>
-              </Grid> */}
+              </Grid>
               <Grid container spacing={3}>
                 <Grid item xs>
+                  <span className={classes.span}>Дата народження</span>
+                  <p className={classes.p}>{profile.dateBorn}</p>
+                </Grid>
+                <Grid item xs>
                   <span className={classes.span}>Стать</span>
-                  <p className={classes.p}>Не вказана</p>
+                  <p className={classes.p}>{profile.select}</p>
                 </Grid>
                 <Grid item xs>
                   <span className={classes.span}>Мова</span>
-                  <p className={classes.p}>Українська</p>
+                  <p className={classes.p}>{profile.select}</p>
                 </Grid>
               </Grid>
             </>

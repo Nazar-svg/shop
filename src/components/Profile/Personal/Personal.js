@@ -79,7 +79,14 @@ export default function Personal(props) {
     lastName: props.profile.lastName,
     pb: props.profile.pb,
     dateBorn: props.profile.dateBorn,
+    selectSex: '',
+    selectLeng: props.item,
   });
+  const changeSelSex = (e) => {
+    setPersonal({ ...personal, selectSex: e.target.value });
+    console.log('sel', personal);
+  };
+
   const changePersonal = () => {
     props.onChangePersonal(personal);
     props.showPersonal(true);
@@ -137,12 +144,23 @@ export default function Personal(props) {
                 />
               </li>
               <li className={classes.li}>
-                <Select label="стать" option1="чоловіча" option2="жіноча" />
+                <select onChange={changeSelSex}>
+                  <option value="Виберіть стать">Виберіть стать</option>
+                  <option value="Чоловік">Чоловік</option>
+                  <option value="Жінка">Жінка</option>
+                </select>
+                {/* <Select
+                  label="стать"
+                  value="Вкажіть стать"
+                  option1="чоловіча"
+                  option2="жіноча"
+                /> */}
               </li>
               <li className={classes.li}>
                 <Select
                   label="Мова спілкування"
-                  value="Оберіть мову"
+                  value={props.item}
+                  option0="Оберіть мову"
                   option1="Укр"
                   option2="Анг"
                 />

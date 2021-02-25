@@ -49,9 +49,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomizedSelects(props) {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  const [item, setItem] = React.useState('');
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setItem(event.target.value);
   };
   return (
     <div>
@@ -61,12 +61,13 @@ export default function CustomizedSelects(props) {
         </InputLabel>
         <NativeSelect
           id="demo-customized-select-native"
-          value={age}
+          value={item}
           onChange={handleChange}
           input={<BootstrapInput />}
         >
-          <option value={10}>{props.option1}</option>
-          <option value={20}>{props.option2}</option>
+          <option value={props.option0}>{props.option0}</option>
+          <option value={props.option1}>{props.option1}</option>
+          <option value={props.option2}>{props.option2}</option>
         </NativeSelect>
       </FormControl>
     </div>
