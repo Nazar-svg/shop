@@ -81,7 +81,8 @@ export default function AutoGrid(props) {
     lastName: 'Kolos',
     pb: 'Sergiovuch',
     dateBorn: '31.05.1990p',
-    select: 'Оберіть стать',
+    selectSex: 'Оберіть стать',
+    selectLeng: 'Оберіть мову',
   });
   const [show, setShow] = React.useState({
     showContacts: true,
@@ -97,7 +98,8 @@ export default function AutoGrid(props) {
       lastName: item.lastName,
       pb: item.pb,
       dateBorn: item.dateBorn,
-      select: item.selectSex,
+      selectSex: item.selectSex,
+      selectLeng: item.selectLeng,
     });
     console.log('B', profile);
   };
@@ -170,11 +172,11 @@ export default function AutoGrid(props) {
                 </Grid>
                 <Grid item xs>
                   <span className={classes.span}>Стать</span>
-                  <p className={classes.p}>{profile.select}</p>
+                  <p className={classes.p}>{profile.selectSex}</p>
                 </Grid>
                 <Grid item xs>
                   <span className={classes.span}>Мова</span>
-                  <p className={classes.p}>{profile.select}</p>
+                  <p className={classes.p}>{profile.selectLeng}</p>
                 </Grid>
               </Grid>
             </>

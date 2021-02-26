@@ -4,8 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import Input from '../../UI/Input/Input';
-import Select from '../../UI/Select/Select';
 import { NavLink } from 'react-router-dom';
+import InputLabel from '@material-ui/core/InputLabel';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,6 +71,14 @@ const useStyles = makeStyles((theme) => ({
   li: {
     marginRight: '15px',
   },
+  liSelect: {
+    margin: '7px 20px 10px 15px',
+  },
+  select: {
+    margin: theme.spacing(1),
+    minWidth: 100,
+    width: 312,
+  },
 }));
 
 export default function Personal(props) {
@@ -79,12 +88,13 @@ export default function Personal(props) {
     lastName: props.profile.lastName,
     pb: props.profile.pb,
     dateBorn: props.profile.dateBorn,
-    selectSex: '',
-    selectLeng: props.item,
+    selectSex: props.profile.selectSex,
+    selectLeng: props.profile.selectLeng,
   });
-  const changeSelSex = (e) => {
-    setPersonal({ ...personal, selectSex: e.target.value });
-    console.log('sel', personal);
+  const changeSelect = (e) => {
+    const { id, value } = e.target;
+    console.log('sel', id, value);
+    setPersonal({ ...personal, [id]: value });
   };
 
   const changePersonal = () => {
@@ -143,27 +153,33 @@ export default function Personal(props) {
                   }
                 />
               </li>
-              <li className={classes.li}>
-                <select onChange={changeSelSex}>
-                  <option value="Виберіть стать">Виберіть стать</option>
+              <li className={classes.liSelect}>
+                <InputLabel htmlFor="demo-customized-select-native">
+                  Оберіь стать
+                </InputLabel>
+                <NativeSelect
+                  className={classes.select}
+                  id="selectSex"
+                  value={personal.selectSex}
+                  onChange={changeSelect}
+                >
                   <option value="Чоловік">Чоловік</option>
                   <option value="Жінка">Жінка</option>
-                </select>
-                {/* <Select
-                  label="стать"
-                  value="Вкажіть стать"
-                  option1="чоловіча"
-                  option2="жіноча"
-                /> */}
+                </NativeSelect>
               </li>
-              <li className={classes.li}>
-                <Select
-                  label="Мова спілкування"
-                  value={props.item}
-                  option0="Оберіть мову"
-                  option1="Укр"
-                  option2="Анг"
-                />
+              <li className={classes.liSelect}>
+                <InputLabel htmlFor="demo-customized-select-native">
+                  Оберіть мову
+                </InputLabel>
+                <NativeSelect
+                  className={classes.select}
+                  id="selectLeng"
+                  value={personal.selectLeng}
+                  onChange={changeSelect}
+                >
+                  <option value="Англійська">Англійська</option>
+                  <option value="Українська">Українська</option>
+                </NativeSelect>
               </li>
             </ul>
             <Button
