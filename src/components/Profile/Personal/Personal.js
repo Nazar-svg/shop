@@ -93,7 +93,6 @@ export default function Personal(props) {
   });
   const changeSelect = (e) => {
     const { id, value } = e.target;
-    console.log('sel', id, value);
     setPersonal({ ...personal, [id]: value });
   };
 
@@ -118,7 +117,7 @@ export default function Personal(props) {
             <ul className={classes.ul}>
               <li className={classes.li}>
                 <Input
-                  // label="Прізвище"
+                  label="Прізвище"
                   id="lastName"
                   onChange={(event) =>
                     setPersonal({ ...personal, lastName: event.target.value })
@@ -128,7 +127,7 @@ export default function Personal(props) {
               </li>
               <li className={classes.li}>
                 <Input
-                  // label="ім'я"
+                  label="ім'я"
                   id="name"
                   value={personal.name}
                   onChange={(event) =>
@@ -138,7 +137,7 @@ export default function Personal(props) {
               </li>
               <li className={classes.li}>
                 <Input
-                  // label="Побатькові"
+                  label="Побатькові"
                   value={personal.pb}
                   onChange={(event) =>
                     setPersonal({ ...personal, pb: event.target.value })
@@ -147,6 +146,7 @@ export default function Personal(props) {
               </li>
               <li className={classes.li}>
                 <Input
+                  label="Дата народження"
                   value={personal.dateBorn}
                   onChange={(event) =>
                     setPersonal({ ...personal, dateBorn: event.target.value })

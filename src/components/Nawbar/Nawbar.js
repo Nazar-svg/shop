@@ -175,9 +175,17 @@ export default function PrimarySearchAppBar({ onTogleOrderingBouth }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
+
+          <NavLink
+            to={'/productList'}
+            style={{
+              color: 'white',
+            }}
+          >
+            <Typography className={classes.title} variant="h6" noWrap>
+              BikeShop
+            </Typography>
+          </NavLink>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -242,7 +250,7 @@ export default function PrimarySearchAppBar({ onTogleOrderingBouth }) {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+      {/* {renderMenu} */}
     </div>
   );
 }

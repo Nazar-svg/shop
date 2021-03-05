@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Checkbox from '../UI/CheckBox/CheckBox';
+import Checkbox from '@material-ui/core/Checkbox';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
@@ -11,6 +11,7 @@ import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import Contacts from './Contacts/Contacts';
 import Personal from './Personal/Personal';
 import ChangeEmail from './ChangeEmail/ChangeEmail';
+import HomePets from './HomePets/HomePets';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AutoGrid(props) {
   const classes = useStyles();
   const [email, setEmail] = React.useState({
-    email: 'NazrarKols@mushhh',
+    email: 'NazrarKols@',
   });
   const [profile, setProfile] = React.useState({
     name: 'Nazar',
@@ -88,7 +89,24 @@ export default function AutoGrid(props) {
     showContacts: true,
     showPersonal: true,
     showEmail: true,
+    showHomePets: true,
   });
+  const [pets, setPets] = React.useState({
+    dog: false,
+    cat: false,
+    fish: false,
+  });
+
+  const onChangePets = (dog, cat, fish) => {
+    console.log('F', pets);
+    setPets({
+      ...pets,
+      dog: dog,
+      cat: cat,
+      fish: fish,
+    });
+    console.log('x', pets);
+  };
 
   const onChangePersonal = (item) => {
     console.log('A', profile);
@@ -126,6 +144,12 @@ export default function AutoGrid(props) {
     setShow({
       ...show,
       showEmail: value,
+    });
+  };
+  const showHomePets = (value) => {
+    setShow({
+      ...show,
+      showHomePets: value,
     });
   };
 
@@ -277,49 +301,47 @@ export default function AutoGrid(props) {
         </div>
 
         <div className={classes.box}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <p className={classes.titleBox}>
-                <PetsIcon className={classes.icon} />
-                Домашні тварини
-              </p>
-            </Grid>
-            <Grid item xs>
-              <div className={classes.Btn}>
-                <Button color="primary">Редагувати</Button>
-              </div>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <span>
-                <Checkbox />
-                собака
-              </span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>кіт</span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>рибки</span>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <Checkbox />
-              <span>пташка</span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>гризун</span>
-            </Grid>
-            <Grid item xs>
-              <Checkbox />
-              <span>земноводне</span>
-            </Grid>
-          </Grid>
+          {show.showHomePets ? (
+            <>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <p className={classes.titleBox}>
+                    <PetsIcon className={classes.icon} />
+                    Домашні тварини
+                  </p>
+                </Grid>
+                <Grid item xs>
+                  <div className={classes.Btn}>
+                    <Button color="primary" onClick={() => showHomePets(false)}>
+                      Редагувати
+                    </Button>
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <span>
+                    <Checkbox checked={pets.dog} disabled />
+                    собака
+                  </span>
+                </Grid>
+                <Grid item xs>
+                  <Checkbox checked={pets.cat} disabled />
+                  <span>кіт</span>
+                </Grid>
+                <Grid item xs>
+                  <Checkbox checked={pets.fish} disabled />
+                  <span>рибки</span>
+                </Grid>
+              </Grid>
+            </>
+          ) : (
+            <HomePets
+              showHomePets={showHomePets}
+              onChangePets={onChangePets}
+              pets={pets}
+            />
+          )}
         </div>
       </div>
     </>

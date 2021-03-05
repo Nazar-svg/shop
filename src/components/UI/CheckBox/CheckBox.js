@@ -67,11 +67,11 @@ function StyledCheckbox(props) {
   );
 }
 
-export default function CustomizedCheckbox() {
+export default function CustomizedCheckbox(props) {
   return (
     <>
-      {/* <StyledCheckbox defaultChecked /> */}
-      <StyledCheckbox disabled />
+      <StyledCheckbox defaultChecked />
+      {/* <StyledCheckbox disabled /> */}
     </>
   );
 }
